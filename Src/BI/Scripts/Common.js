@@ -12,7 +12,7 @@ function createNamespace(namespaceString) {
     return parent;
 }
 
-createNamespace("vasjBI");
+createNamespace("mvcBI");
 
 String.prototype.replaceAll = function (search, replacement) {
     var target = this;
@@ -46,47 +46,44 @@ window.addEventListener('load', function () {
     }
 }, false);
 
-vasjBI.padValue = function (value) {
-    return (value < 10) ? "0" + value : value;
-}
+mvcBI.padValue = function (value) {
+  return (value < 10) ? "0" + value : value;
+};
 
-vasjBI.set_matching_words = function (selectObj, txtObj) {
-    var letter = txtObj.value;
-    for (var i = 0; i < selectObj.length; i++) {
-        if (selectObj.options[i].value.charAt(0) == letter) {
-            selectObj.options[i].selected = true;
-        }
-        else {
-            selectObj.options[i].selected = false;
-        }
+mvcBI.set_matching_words = function (selectObj, txtObj) {
+  var letter = txtObj.value;
+  for (var i = 0; i < selectObj.length; i++) {
+    if (selectObj.options[i].value.charAt(0) == letter) {
+      selectObj.options[i].selected = true;
     }
-}
-
-vasjBI.JSON_to_URLEncoded = function (element, key, list) {
-    var list = list || [];
-    if (typeof (element) == 'object') {
-        for (var idx in element)
-            JSON_to_URLEncoded(element[idx], key ? key + '[' + idx + ']' : idx, list);
-    } else {
-        list.push(key + '=' + encodeURIComponent(element));
+    else {
+      selectObj.options[i].selected = false;
     }
-    return list.join('&');
-}
+  }
+};
 
-vasjBI.handleException = function (request, message, error) {
-    var msg = "";
-    msg += "Code: " + request.status + "\n";
-    msg += "Text: " + request.statusText + "\n";
-    if (request.responseJSON != null) {
-        msg += "Message" +
-            request.responseJSON.Message + "\n";
-    }
-    alert(msg);
-}
+mvcBI.JSON_to_URLEncoded = function (element, key, list) {
+  list = list || [];
+  if (typeof (element) === 'object') {
+    for (var idx in element)
+      JSON_to_URLEncoded(element[idx], key ? key + '[' + idx + ']' : idx, list);
+  } else {
+    list.push(key + '=' + encodeURIComponent(element));
+  }
+  return list.join('&');
+};
 
-vasjBI.exists = function () {
-    return this.length !== 0;
-}
-// Usage:
-// $("#notAnElement").exists();
-// OR if ($(selector).length) { ... }
+mvcBI.handleException = function (request, message, error) {
+  var msg = "";
+  msg += "Code: " + request.status + "\n";
+  msg += "Text: " + request.statusText + "\n";
+  if (request.responseJSON != null) {
+    msg += "Message" +
+      request.responseJSON.Message + "\n";
+  }
+  alert(msg);
+};
+
+mvcBI.exists = function () {
+  return this.length !== 0;
+};
