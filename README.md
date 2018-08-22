@@ -1,2 +1,2 @@
 # MVCBI
-ASP.NET MVC Web Application Business Intelligence
+ASP.NET MVC Web Application - Business Intelligence
