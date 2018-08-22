@@ -1,4 +1,4 @@
-namespace VASJ.BI.Models.DTO
+namespace BI.Models.DTO
 {
   public class sp_Arcd1
   {

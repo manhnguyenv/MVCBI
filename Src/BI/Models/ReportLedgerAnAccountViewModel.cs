@@ -1,16 +1,16 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 
-namespace VASJ.BI.Models
+namespace BI.Models
 {
-    public class ReportLedgerAnAccountViewModel
-    {
-        public List<ReportLedgerAnAccount> ListLedgerAnAccount { get; set; }
-        public List<ReportLedgerAnAccountSummary> ListLedgerAnAccountSummary { get; set; }
+  public class ReportLedgerAnAccountViewModel
+  {
+    public List<ReportLedgerAnAccount> ListLedgerAnAccount { get; set; }
+    public List<ReportLedgerAnAccountSummary> ListLedgerAnAccountSummary { get; set; }
 
-        public ReportLedgerAnAccountViewModel()
-        {
-            ListLedgerAnAccount = new List<ReportLedgerAnAccount>();
-            ListLedgerAnAccountSummary = new List<ReportLedgerAnAccountSummary>();
-        }
+    public ReportLedgerAnAccountViewModel()
+    {
+      ListLedgerAnAccount = new List<ReportLedgerAnAccount>();
+      ListLedgerAnAccountSummary = new List<ReportLedgerAnAccountSummary>();
     }
+  }
 }

@@ -1,10 +1,10 @@
-﻿using System.Collections.Generic;
-using VASJ.BI.Models;
+using BI.Models;
+using System.Collections.Generic;
 
-namespace VASJ.BI.ViewModels
+namespace BI.ViewModels
 {
-    public class BackEndLogSystemList
-    {
-        public List<LogSystem> LogSystems { get; set; }
-    }
+  public class BackEndLogSystemList
+  {
+    public List<LogSystem> LogSystems { get; set; }
+  }
 }

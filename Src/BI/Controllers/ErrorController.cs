@@ -1,13 +1,13 @@
-﻿using System.Web.Mvc;
+using System.Web.Mvc;
 
-namespace VASJ.BI.Controllers
+namespace BI.Controllers
 {
-    public class ErrorController : Controller
+  public class ErrorController : Controller
+  {
+    // GET: Error
+    public ActionResult Index()
     {
-        // GET: Error
-        public ActionResult Index()
-        {
-            return View();
-        }
+      return View();
     }
+  }
 }

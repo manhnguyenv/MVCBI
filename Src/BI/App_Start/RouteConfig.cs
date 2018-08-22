@@ -1,10 +1,10 @@
+using BI.Helpers;
+using BI.Models;
 using Canonicalize;
 using System.Web.Mvc;
 using System.Web.Routing;
-using VASJ.BI.Helpers;
-using VASJ.BI.Models;
 
-namespace VASJ.BI
+namespace BI
 {
   public class RouteConfig
   {

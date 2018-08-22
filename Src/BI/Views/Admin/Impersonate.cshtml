@@ -1,11 +1,11 @@
-﻿@model BackEndImpersonate
+@model BackEndImpersonate
 @if (BackEndSessions.CurrentUser.GroupId == 1)  //This check is necessary here and inside the calling view (Index.cshtml)
 {
     using (Html.BootstrapBeginForm(actionName: "", controllerName: "", isDirtyFormMonitored: false))
     {
         <div class="panel panel-default">
             <div class="panel-heading">
-                <strong>@VASJ.BI.Resources.Strings.Impersonate</strong>
+                <strong>@BI.Resources.Strings.Impersonate</strong>
             </div>
             <div class="panel-body">
                 @Html.AntiForgeryToken()

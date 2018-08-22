@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 
-namespace VASJ.BI.Helpers
+namespace BI.Helpers
 {
   public class StoredProcedureFactory
   {

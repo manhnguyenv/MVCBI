@@ -1,4 +1,4 @@
-﻿@model BackEndGroupsList
+@model BackEndGroupsList
 <div class="row">
     <div class="col-lg-12">
         @using (Html.BootstrapBeginForm(formMethod: FormMethod.Get, isDirtyFormMonitored: false))
@@ -28,7 +28,7 @@
                 using (Html.BootstrapBeginForm("", "", isDirtyFormMonitored: false))
                 {
                     @Html.AntiForgeryToken()
-        
+
                     WebGridHelper webGrid = new WebGridHelper(Model.GroupList, defaultSort: "GroupName", sortDirection: SortDirection.Ascending, rowsPerPage: 10);
                     @webGrid.GetExtendedHtml(
                         columns: webGrid.ExtendedColumns(
@@ -38,13 +38,13 @@
                                             @Html.BootstrapButtonEdit("/Admin/GroupsEdit/" + item.GroupId as string)
                                         }
                                     </text>, style: "col-10"),
-                                    webGrid.ExtendedColumn("", "", 
+                                    webGrid.ExtendedColumn("", "",
                                     @<text>
-                                        @if (item.GroupId != 1) { 
+                                        @if (item.GroupId != 1) {
                                             @Html.BootstrapButtonDelete("/Admin/GroupsDelete", item.GroupId as object, item.GroupName as string)
                                         }
                                     </text>, style: "col-10"),
-                                    webGrid.ExtendedColumn("GroupName", VASJ.BI.Resources.Strings.GroupName)
+                                    webGrid.ExtendedColumn("GroupName", BI.Resources.Strings.GroupName)
                         )
                     )
                 }

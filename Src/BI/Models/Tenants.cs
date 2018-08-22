@@ -1,9 +1,9 @@
+using BI.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using VASJ.BI.Helpers;
 
-namespace VASJ.BI.Models
+namespace BI.Models
 {
   public class Tenant
   {

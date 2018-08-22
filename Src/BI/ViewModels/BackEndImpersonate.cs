@@ -1,11 +1,11 @@
-﻿using VASJ.BI.Helpers;
+using BI.Helpers;
 
-namespace VASJ.BI.ViewModels
+namespace BI.ViewModels
 {
-    public class BackEndImpersonate
-    {
-        [DataAnnotationsDisplay("Username")]
-        [DataAnnotationsRequired]
-        public string Username { get; set; }
-    }
+  public class BackEndImpersonate
+  {
+    [DataAnnotationsDisplay("Username")]
+    [DataAnnotationsRequired]
+    public string Username { get; set; }
+  }
 }

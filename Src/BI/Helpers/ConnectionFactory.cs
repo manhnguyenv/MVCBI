@@ -3,7 +3,7 @@ using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 
-namespace VASJ.BI.Helpers
+namespace BI.Helpers
 {
   public class ConnectionFactory : IDisposable
   {

@@ -1,10 +1,10 @@
 using AutoMapper;
+using BI.Helpers;
+using BI.Models.DTO;
 using System.Collections.Generic;
 using System.Linq;
-using VASJ.BI.Helpers;
-using VASJ.BI.Models.DTO;
 
-namespace VASJ.BI.Models
+namespace BI.Models
 {
   public class ReportBalanceSheetAccount
   {
@@ -34,6 +34,7 @@ namespace VASJ.BI.Models
     public decimal? Co_ck { get; set; }
     public decimal? No_ck_nt { get; set; }
     public decimal? Co_ck_nt { get; set; }
+
     public string Ten_tk_UTF8
     {
       get

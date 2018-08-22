@@ -1,34 +1,34 @@
-﻿using System.Collections.Generic;
-using VASJ.BI.Helpers;
-using VASJ.BI.Models;
+using BI.Helpers;
+using BI.Models;
+using System.Collections.Generic;
 
-namespace VASJ.BI.ViewModels
+namespace BI.ViewModels
 {
-    public class BackEndTransactionLogList
-    {
-        #region Filter
+  public class BackEndTransactionLogList
+  {
+    #region Filter
 
-        [DataAnnotationsDisplay("TransationDate_TransSearch")]
-        [DataAnnotationsStringLengthMax(12)]
-        public string TransationDate { get; set; }
+    [DataAnnotationsDisplay("TransationDate_TransSearch")]
+    [DataAnnotationsStringLengthMax(12)]
+    public string TransationDate { get; set; }
 
-        [DataAnnotationsDisplay("TransationType_TransSearch")]
-        public int? TransationType { get; set; }
+    [DataAnnotationsDisplay("TransationType_TransSearch")]
+    public int? TransationType { get; set; }
 
-        [DataAnnotationsDisplay("UserId_TransSearch")]
-        [DataAnnotationsStringLengthMax(255)]
-        public string UserId { get; set; }
+    [DataAnnotationsDisplay("UserId_TransSearch")]
+    [DataAnnotationsStringLengthMax(255)]
+    public string UserId { get; set; }
 
-        [DataAnnotationsDisplay("Nick_TransSearch")]
-        [DataAnnotationsStringLengthMax(255)]
-        public string Nick { get; set; }
+    [DataAnnotationsDisplay("Nick_TransSearch")]
+    [DataAnnotationsStringLengthMax(255)]
+    public string Nick { get; set; }
 
-        [DataAnnotationsDisplay("Reason_TransSearch")]
-        [DataAnnotationsStringLengthMax(255)]
-        public string Reason { get; set; }
+    [DataAnnotationsDisplay("Reason_TransSearch")]
+    [DataAnnotationsStringLengthMax(255)]
+    public string Reason { get; set; }
 
-        #endregion Filter
+    #endregion Filter
 
-        public List<TransactionLog> TransactionLogs { get; set; }
-    }
+    public List<TransactionLog> TransactionLogs { get; set; }
+  }
 }

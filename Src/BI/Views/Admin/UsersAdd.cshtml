@@ -1,4 +1,4 @@
-﻿@model BackEndUsersAdd
+@model BackEndUsersAdd
 <div class="row">
   <div class="col-lg-12">
     @* Sets isDirtyFormMonitored to false due to the below Chrome's bug *@
@@ -8,7 +8,7 @@
         <div class="panel-heading">
           @Html.BootstrapSubmit()
           @Html.BootstrapResetForm()
-          @Html.BootstrapButtonRedirect("/Admin/Users", VASJ.BI.Resources.Strings.Users)
+          @Html.BootstrapButtonRedirect("/Admin/Users", BI.Resources.Strings.Users)
         </div>
         <div class="panel-body">
           @Html.AntiForgeryToken()

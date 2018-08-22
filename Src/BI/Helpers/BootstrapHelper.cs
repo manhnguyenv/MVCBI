@@ -1,3 +1,4 @@
+using BI.Models;
 using MvcPaging;
 using System;
 using System.Collections.Generic;
@@ -9,9 +10,8 @@ using System.Web.Mvc;
 using System.Web.Mvc.Ajax;
 using System.Web.Mvc.Html;
 using System.Web.Routing;
-using VASJ.BI.Models;
 
-namespace VASJ.BI.Helpers
+namespace BI.Helpers
 {
   public class BootstrapMenuItem
   {

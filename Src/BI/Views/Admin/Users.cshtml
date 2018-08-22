@@ -1,4 +1,4 @@
-﻿@model BackEndUsersList
+@model BackEndUsersList
 <div class="row">
     <div class="col-lg-12">
         @using (Html.BootstrapBeginForm(formMethod: FormMethod.Get, isDirtyFormMonitored: false))
@@ -21,9 +21,8 @@
                             Groups groups = new Groups();
                             var selectListBackEndGroups = new SelectList(groups.GetAllGroups(), "GroupId", "GroupName", Model.GroupId);
                         }
-                        @Html.BootstrapDropDownListFor(m => m.GroupId, selectListBackEndGroups, VASJ.BI.Resources.Strings.Any)
+                        @Html.BootstrapDropDownListFor(m => m.GroupId, selectListBackEndGroups, BI.Resources.Strings.Any)
                     </div>
-
                 </div>
                 <div class="panel-footer">
                     @Html.BootstrapApplyFilter()
@@ -46,10 +45,10 @@
                     WebGridHelper webGrid = new WebGridHelper(Model.UserList, defaultSort: "UserName", sortDirection: SortDirection.Ascending, rowsPerPage: 10);
                     @webGrid.GetExtendedHtml(
                         columns: webGrid.ExtendedColumns(
-                                 webGrid.ExtendedColumn("UserName", VASJ.BI.Resources.Strings.Username),
-                                 webGrid.ExtendedColumn("FullName", VASJ.BI.Resources.Strings.FullName),
-                                 webGrid.ExtendedColumn("Email", VASJ.BI.Resources.Strings_Subscription.SubscriptionEmail, format: @<text><a href="/Admin/SubscriptionsEdit/@Server.UrlEncode(item.Email)/">@item.Email</a></text>),
-                                 webGrid.ExtendedColumn("GroupName", VASJ.BI.Resources.Strings.Group)
+                                 webGrid.ExtendedColumn("UserName", BI.Resources.Strings.Username),
+                                 webGrid.ExtendedColumn("FullName", BI.Resources.Strings.FullName),
+                                 webGrid.ExtendedColumn("Email", BI.Resources.Strings_Subscription.SubscriptionEmail, format: @<text><a href="/Admin/SubscriptionsEdit/@Server.UrlEncode(item.Email)/">@item.Email</a></text>),
+                                 webGrid.ExtendedColumn("GroupName", BI.Resources.Strings.Group)
                         )
                     );
                 }

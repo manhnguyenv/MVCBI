@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
-using VASJ.BI.Models;
+using BI.Models;
+using System.Collections.Generic;
 
-namespace VASJ.BI.ViewModels
+namespace BI.ViewModels
 {
   public class BackEndTenantList
   {

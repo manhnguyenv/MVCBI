@@ -1,3 +1,6 @@
+using BI.App_Start;
+using BI.Helpers;
+using BI.Models;
 using System;
 using System.Configuration;
 using System.Globalization;
@@ -5,11 +8,8 @@ using System.Threading;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
-using VASJ.BI.App_Start;
-using VASJ.BI.Helpers;
-using VASJ.BI.Models;
 
-namespace VASJ.BI
+namespace BI
 {
   public class MvcApplication : System.Web.HttpApplication
   {
@@ -167,7 +167,7 @@ namespace VASJ.BI
       {
         bool isDebugMode = ConfigurationManager.AppSettings["IsDebugMode"] == "1";
         var mailTo = ConfigurationManager.AppSettings["toMailDefault"];
-        string subject = isDebugMode ? "[VASJ.BI] Application throw an error" : "[VASJ.BI Live] Application throw an error";
+        string subject = isDebugMode ? "[BI] Application throw an error" : "[BI Live] Application throw an error";
         if (isDebugMode)
         {
           MailHelper.SendMail(subject, errMsg, mailTo);

@@ -1,7 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations;
-using VASJ.BI.Helpers;
+using BI.Helpers;
+using System.ComponentModel.DataAnnotations;
 
-namespace VASJ.BI.ViewModels
+namespace BI.ViewModels
 {
   public class BackEndUsersAdd
   {

@@ -1,122 +1,122 @@
-﻿using System;
+using BI.Helpers;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
-using VASJ.BI.Helpers;
 
-namespace VASJ.BI.Models
+namespace BI.Models
 {
-    public enum PermissionCode
+  public enum PermissionCode
+  {
+    Browse,
+    Read,
+    Edit,
+    Add,
+    Delete
+  }
+
+  public class Group
+  {
+    public int GroupId { get; set; }
+    public string GroupName { get; set; }
+  }
+
+  public class Permission
+  {
+    public PermissionCode PermissionCode { get; set; }
+    public bool PermissionValue { get; set; }
+  }
+
+  public class GroupPermission
+  {
+    public int? GroupId { get; set; }
+
+    public List<Permission> Permissions { get; set; }
+  }
+
+  public class Groups
+  {
+    private List<Group> _AllItems;
+
+    private List<Group> GetAllItems(bool force = false)
     {
-        Browse,
-        Read,
-        Edit,
-        Add,
-        Delete
+      return AdoHelper.ExecCachedListProc<Group>("sp_admin_groups_select", force);
     }
 
-    public class Group
+    public Groups()
     {
-        public int GroupId { get; set; }
-        public string GroupName { get; set; }
+      _AllItems = GetAllItems();
     }
 
-    public class Permission
+    public List<Group> GetAllGroups(string groupName = null)
     {
-        public PermissionCode PermissionCode { get; set; }
-        public bool PermissionValue { get; set; }
+      List<Group> result = null;
+
+      if (_AllItems.IsNotNull())
+      {
+        result = (from i in _AllItems
+                  where (groupName.IsNull() || i.GroupName.Contains(groupName, StringComparison.OrdinalIgnoreCase))
+                  select i).ToList();
+      }
+
+      return result;
     }
 
-    public class GroupPermission
+    public Group GetGroupById(int? id)
     {
-        public int? GroupId { get; set; }
-
-        public List<Permission> Permissions { get; set; }
+      Group result;
+      result = (from page in _AllItems
+                where page.GroupId == id
+                select page).FirstOrDefault();
+      return result;
     }
 
-    public class Groups
+    public int? Delete(int groupId)
     {
-        private List<Group> _AllItems;
+      int? result;
 
-        private List<Group> GetAllItems(bool force = false)
-        {
-            return AdoHelper.ExecCachedListProc<Group>("sp_admin_groups_select", force);
-        }
+      using (AdoHelper db = new AdoHelper())
+      {
+        var returnValue = db.CreateParamReturnValue("returnValue");
+        db.ExecNonQueryProc("sp_admin_groups_delete", "@GroupId", groupId, returnValue);
+        result = db.GetParamReturnValue(returnValue);
+        if (result == 0)
+          _AllItems = GetAllItems(true);
+      }
 
-        public Groups()
-        {
-            _AllItems = GetAllItems();
-        }
-
-        public List<Group> GetAllGroups(string groupName = null)
-        {
-            List<Group> result = null;
-
-            if (_AllItems.IsNotNull())
-            {
-                result = (from i in _AllItems
-                          where (groupName.IsNull() || i.GroupName.Contains(groupName, StringComparison.OrdinalIgnoreCase))
-                          select i).ToList();
-            }
-
-            return result;
-        }
-
-        public Group GetGroupById(int? id)
-        {
-            Group result;
-            result = (from page in _AllItems
-                      where page.GroupId == id
-                      select page).FirstOrDefault();
-            return result;
-        }
-
-        public int? Delete(int groupId)
-        {
-            int? result;
-
-            using (AdoHelper db = new AdoHelper())
-            {
-                var returnValue = db.CreateParamReturnValue("returnValue");
-                db.ExecNonQueryProc("sp_admin_groups_delete", "@GroupId", groupId, returnValue);
-                result = db.GetParamReturnValue(returnValue);
-                if (result == 0)
-                    _AllItems = GetAllItems(true);
-            }
-
-            return result;
-        }
-
-        public int? Add(string groupName)
-        {
-            int? result;
-
-            using (AdoHelper db = new AdoHelper())
-            {
-                var returnValue = db.CreateParamReturnValue("returnValue");
-                db.ExecNonQueryProc("sp_admin_groups_insert", "@GroupName", groupName, returnValue);
-                result = db.GetParamReturnValue(returnValue);
-                if (result == 0)
-                    _AllItems = GetAllItems(true);
-            }
-
-            return result;
-        }
-
-        public int? Edit(int groupId, string groupName)
-        {
-            int? result;
-
-            using (AdoHelper db = new AdoHelper())
-            {
-                var returnValue = db.CreateParamReturnValue("returnValue");
-                db.ExecNonQueryProc("sp_admin_groups_update", "@GroupId", groupId, "@GroupName", groupName, returnValue);
-                result = db.GetParamReturnValue(returnValue);
-                if (result == 0)
-                    _AllItems = GetAllItems(true);
-            }
-
-            return result;
-        }
+      return result;
     }
+
+    public int? Add(string groupName)
+    {
+      int? result;
+
+      using (AdoHelper db = new AdoHelper())
+      {
+        var returnValue = db.CreateParamReturnValue("returnValue");
+        db.ExecNonQueryProc("sp_admin_groups_insert", "@GroupName", groupName, returnValue);
+        result = db.GetParamReturnValue(returnValue);
+        if (result == 0)
+          _AllItems = GetAllItems(true);
+      }
+
+      return result;
+    }
+
+    public int? Edit(int groupId, string groupName)
+    {
+      int? result;
+
+      using (AdoHelper db = new AdoHelper())
+      {
+        var returnValue = db.CreateParamReturnValue("returnValue");
+        db.ExecNonQueryProc("sp_admin_groups_update", "@GroupId", groupId, "@GroupName", groupName, returnValue);
+        result = db.GetParamReturnValue(returnValue);
+        if (result == 0)
+          _AllItems = GetAllItems(true);
+      }
+
+      return result;
+    }
+  }
 }

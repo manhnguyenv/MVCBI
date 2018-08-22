@@ -1,8 +1,8 @@
+using BI.Helpers;
+using BI.Models.POCO;
 using System.Collections.Generic;
-using VASJ.BI.Helpers;
-using VASJ.BI.Models.POCO;
 
-namespace VASJ.BI.ViewModels
+namespace BI.ViewModels
 {
   public class BackEndTenantAddEdit
   {
@@ -10,7 +10,6 @@ namespace VASJ.BI.ViewModels
 
     [DataAnnotationsDisplay("UserName")]
     [DataAnnotationsOnlyVietnameseCharacters]
-    
     [DataAnnotationsStringLengthMax(255)]
     public string UserName { get; set; }
 

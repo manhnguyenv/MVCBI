@@ -7,7 +7,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 
-namespace VASJ.BI.Helpers
+namespace BI.Helpers
 {
   /// <summary>
   /// ADO.NET helper class for MS SQL Server Database. To interact with a different DBMS only this class needs to be changed.

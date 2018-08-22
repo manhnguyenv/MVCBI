@@ -1,11 +1,11 @@
+using BI.Filters;
+using BI.Helpers;
+using BI.Models;
+using BI.ViewModels;
 using System.Linq;
 using System.Web.Mvc;
-using VASJ.BI.Filters;
-using VASJ.BI.Helpers;
-using VASJ.BI.Models;
-using VASJ.BI.ViewModels;
 
-namespace VASJ.BI.Controllers
+namespace BI.Controllers
 {
   public partial class AdminController : AdminBaseController
   {

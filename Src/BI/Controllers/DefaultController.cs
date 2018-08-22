@@ -1,12 +1,12 @@
-﻿using AutoMapper;
+using AutoMapper;
+using BI.Helpers;
+using BI.Models;
+using BI.Models.DTO;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
-using VASJ.BI.Helpers;
-using VASJ.BI.Models;
-using VASJ.BI.Models.DTO;
 
-namespace VASJ.BI.Controllers
+namespace BI.Controllers
 {
   public class DefaultController : Controller
   {

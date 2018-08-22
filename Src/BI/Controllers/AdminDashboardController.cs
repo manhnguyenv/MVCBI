@@ -1,9 +1,9 @@
+using BI.Filters;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
-using VASJ.BI.Filters;
 
-namespace VASJ.BI.Controllers
+namespace BI.Controllers
 {
   public partial class AdminController : AdminBaseController
   {

@@ -1,8 +1,8 @@
-﻿namespace VASJ.BI.Helpers
+namespace BI.Helpers
 {
-    public class Converter
-    {
-        private static char[] tcvnchars = {
+  public class Converter
+  {
+    private static char[] tcvnchars = {
                                 'µ', '¸', '¶', '·', '¹',
                                 '¨', '»', '¾', '¼', '½', 'Æ',
                                 '©', 'Ç', 'Ê', 'È', 'É', 'Ë',
@@ -18,7 +18,7 @@
                                 '¡', '¢', '§', '£', '¤', '¥', '¦'
                             };
 
-        private static char[] unichars = {
+    private static char[] unichars = {
                                 'à', 'á', 'ả', 'ã', 'ạ',
                                 'ă', 'ằ', 'ắ', 'ẳ', 'ẵ', 'ặ',
                                 'â', 'ầ', 'ấ', 'ẩ', 'ẫ', 'ậ',
@@ -34,25 +34,25 @@
                                 'Ă', 'Â', 'Đ', 'Ê', 'Ô', 'Ơ', 'Ư'
                             };
 
-        private static char[] convertTable;
+    private static char[] convertTable;
 
-        static Converter()
-        {
-            convertTable = new char[256];
-            for (int i = 0; i < 256; i++)
-                convertTable[i] = (char)i;
-            for (int i = 0; i < tcvnchars.Length; i++)
-                convertTable[tcvnchars[i]] = unichars[i];
-        }
-
-        public static string TCVN3ToUnicode(string value)
-        {
-            char[] chars = value.ToCharArray();
-            for (int i = 0; i < chars.Length; i++)
-                if (chars[i] < (char)256)
-                    chars[i] = convertTable[chars[i]];
-            string rstr = new string(chars);
-            return rstr;
-        }
+    static Converter()
+    {
+      convertTable = new char[256];
+      for (int i = 0; i < 256; i++)
+        convertTable[i] = (char)i;
+      for (int i = 0; i < tcvnchars.Length; i++)
+        convertTable[tcvnchars[i]] = unichars[i];
     }
+
+    public static string TCVN3ToUnicode(string value)
+    {
+      char[] chars = value.ToCharArray();
+      for (int i = 0; i < chars.Length; i++)
+        if (chars[i] < (char)256)
+          chars[i] = convertTable[chars[i]];
+      string rstr = new string(chars);
+      return rstr;
+    }
+  }
 }

@@ -1,14 +1,14 @@
-﻿using System.Web;
-using VASJ.BI.Helpers;
+using BI.Helpers;
+using System.Web;
 
-namespace VASJ.BI.ViewModels
+namespace BI.ViewModels
 {
-    public class BackEndAdminPagesList
-    {
-        [DataAnnotationsDisplay("PageName")]
-        [DataAnnotationsStringLengthMax(255)]
-        public string PageName { get; set; }
+  public class BackEndAdminPagesList
+  {
+    [DataAnnotationsDisplay("PageName")]
+    [DataAnnotationsStringLengthMax(255)]
+    public string PageName { get; set; }
 
-        public HtmlString TreeTablePageList { get; set; }
-    }
+    public HtmlString TreeTablePageList { get; set; }
+  }
 }

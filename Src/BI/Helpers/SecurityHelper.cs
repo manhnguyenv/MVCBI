@@ -3,7 +3,7 @@ using System.IO;
 using System.Security.Cryptography;
 using System.Text;
 
-namespace VASJ.BI.Helpers
+namespace BI.Helpers
 {
   public static class SecurityHelper
   {

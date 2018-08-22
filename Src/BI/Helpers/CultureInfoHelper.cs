@@ -1,28 +1,28 @@
-﻿using System.Configuration;
+using System.Configuration;
 using System.Globalization;
 using System.Threading;
 using System.Web;
 
-namespace VASJ.BI.Helpers
+namespace BI.Helpers
 {
-    public class CultureInfoHelper
+  public class CultureInfoHelper
+  {
+    public static void ForceBackEndLanguage()
     {
-        public static void ForceBackEndLanguage()
-        {
-            //Save the CultureInfo so it can be restored once the page request is completed
-            HttpContext.Current.Session["previousCultureInfo"] = Thread.CurrentThread.CurrentUICulture;
+      //Save the CultureInfo so it can be restored once the page request is completed
+      HttpContext.Current.Session["previousCultureInfo"] = Thread.CurrentThread.CurrentUICulture;
 
-            //Set the preferred CultureInfo as defined in the AppSettings
-            Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture(ConfigurationManager.AppSettings["AdminLanguageCode"]);
-        }
-
-        public static void RestoreFrontEndLanguage()
-        {
-            if (HttpContext.Current.Session["previousCultureInfo"] != null)
-            {
-                //Restore the previous CultureInfo
-                Thread.CurrentThread.CurrentUICulture = HttpContext.Current.Session["previousCultureInfo"] as CultureInfo;
-            }
-        }
+      //Set the preferred CultureInfo as defined in the AppSettings
+      Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture(ConfigurationManager.AppSettings["AdminLanguageCode"]);
     }
+
+    public static void RestoreFrontEndLanguage()
+    {
+      if (HttpContext.Current.Session["previousCultureInfo"] != null)
+      {
+        //Restore the previous CultureInfo
+        Thread.CurrentThread.CurrentUICulture = HttpContext.Current.Session["previousCultureInfo"] as CultureInfo;
+      }
+    }
+  }
 }

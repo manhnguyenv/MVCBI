@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -961,7 +961,7 @@
     <value>Canonicalizza</value>
   </data>
   <data name="TooltipCanonicalize" xml:space="preserve">
-    <value>Se selezionato l'URL digitato nel browser verrà automaticamente reindirizzato al nome di dominio specificato nel campo sottostante.&lt;br/&gt;Es. Se il nome di dominio è www.VASJ.BI.com e l'utente digita VASJ.BI.com allora verrà reindirizzato su www.VASJ.BI.com&lt;br/&gt;ma se il nome di dominio è VASJ.BI.com e l'utente digita www.VASJ.BI.com allora verrà reindirizzato su VASJ.BI.com.&lt;br/&gt;Se non selezionato non verrà effettuato nessun reindirizzamento.</value>
+    <value>Se selezionato l'URL digitato nel browser verrà automaticamente reindirizzato al nome di dominio specificato nel campo sottostante.&lt;br/&gt;Es. Se il nome di dominio è www.BI.com e l'utente digita BI.com allora verrà reindirizzato su www.BI.com&lt;br/&gt;ma se il nome di dominio è BI.com e l'utente digita www.BI.com allora verrà reindirizzato su BI.com.&lt;br/&gt;Se non selezionato non verrà effettuato nessun reindirizzamento.</value>
   </data>
   <data name="Installation" xml:space="preserve">
     <value>Installazione</value>
@@ -979,7 +979,7 @@
     <value>Per completare l'installazione devi conoscere alcune informazioni riguardanti il tuo server database (stringa di connessione).</value>
   </data>
   <data name="InstallationSuccess" xml:space="preserve">
-    <value>VASJ.BI è stato installato correttamente.</value>
+    <value>BI è stato installato correttamente.</value>
   </data>
   <data name="SqlPassword" xml:space="preserve">
     <value>Password SQL</value>

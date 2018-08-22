@@ -1,4 +1,4 @@
-﻿@model BackEndCmsPagesAdd
+@model BackEndCmsPagesAdd
 <div class="row">
     <div class="col-lg-12">
         @using (Html.BootstrapBeginForm())
@@ -7,7 +7,7 @@
                 <div class="panel-heading">
                     @Html.BootstrapSubmit()
                     @Html.BootstrapResetForm()
-                    @Html.BootstrapButtonRedirect("/Admin/CmsPages", VASJ.BI.Resources.Strings.CmsPages)
+                    @Html.BootstrapButtonRedirect("/Admin/CmsPages", BI.Resources.Strings.CmsPages)
                 </div>
                 <div class="panel-body">
 
@@ -19,7 +19,7 @@
                             CmsPages cmsPages = new CmsPages();
                             var selectListBackEndCmsPages = new SelectList(cmsPages.GetAllPages(true), "PageId", "PageName", Model.PageParentId);
                         }
-                        @Html.BootstrapDropDownListFor(m => m.PageParentId, selectListBackEndCmsPages, VASJ.BI.Resources.Strings.NoParent, autoFocus: true)
+                        @Html.BootstrapDropDownListFor(m => m.PageParentId, selectListBackEndCmsPages, BI.Resources.Strings.NoParent, autoFocus: true)
 
                         @Html.BootstrapTextBoxFor(m => m.PageName)
 

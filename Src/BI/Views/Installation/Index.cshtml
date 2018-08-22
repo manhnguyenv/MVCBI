@@ -1,15 +1,15 @@
-﻿@model BackEndInstallation
+@model BackEndInstallation
 <div class="row">
     <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
         <div class="panel panel-default buffer-top">
             <div class="panel-heading text-center">
-                <h3>@VASJ.BI.Resources.Strings.Installation - VASJ.BI</h3>
+                <h3>@BI.Resources.Strings.Installation - BI</h3>
             </div>
             <div class="panel-body">
                 @if (ViewData.IsFormVisible())
                 {
                     <div class="alert alert-warning">
-                        <p><i class="fa fa-warning"></i> @VASJ.BI.Resources.Strings.InstallationInstructions</p>
+                        <p><i class="fa fa-warning"></i> @BI.Resources.Strings.InstallationInstructions</p>
                     </div>
                     using (Html.BootstrapBeginForm(isDirtyFormMonitored: false))
                     {
@@ -20,42 +20,42 @@
                             @Html.BootstrapDropDownListFor(m => m.AdminLanguageCode, FormHelper.GetSelectListForAdminLanguageCodes(), null, "toggle-admin-language-code")
                             @Html.HiddenFor(m => m.IsChangeAdminLanguageCode)
 
-                            @Html.BootstrapTextBoxFor(m => m.SqlServerName, labelTooltip: VASJ.BI.Resources.Strings.TooltipSqlServerName)
+                            @Html.BootstrapTextBoxFor(m => m.SqlServerName, labelTooltip: BI.Resources.Strings.TooltipSqlServerName)
 
                             @Html.BootstrapTextBoxFor(m => m.DatabaseName)
 
-                            @Html.BootstrapCheckBoxFor(m => m.CreateDbIfDoesNotExist, labelTooltip: VASJ.BI.Resources.Strings.TooltipCreateDbIfDoesNotExist)
+                            @Html.BootstrapCheckBoxFor(m => m.CreateDbIfDoesNotExist, labelTooltip: BI.Resources.Strings.TooltipCreateDbIfDoesNotExist)
 
-                            @Html.BootstrapCheckBoxFor(m => m.IgnoreDbExistsWarning, labelTooltip: VASJ.BI.Resources.Strings.TooltipIgnoreDbExistsWarning, className: "toggle-ignore-db-exists-warning")
+                            @Html.BootstrapCheckBoxFor(m => m.IgnoreDbExistsWarning, labelTooltip: BI.Resources.Strings.TooltipIgnoreDbExistsWarning, className: "toggle-ignore-db-exists-warning")
 
-                            @Html.BootstrapCheckBoxFor(m => m.ResetDbIfDoesExist, labelTooltip: VASJ.BI.Resources.Strings.TooltipResetDbIfDoesExist, className: "toggle-reset-db-if-does-exists")
+                            @Html.BootstrapCheckBoxFor(m => m.ResetDbIfDoesExist, labelTooltip: BI.Resources.Strings.TooltipResetDbIfDoesExist, className: "toggle-reset-db-if-does-exists")
 
                             @Html.BootstrapDropDownListFor(m => m.SqlAuthenticationType, FormHelper.GetSelectListForSqlAuthenticationTypes(), null, "toggle-sql-authentication-type")
 
                             @Html.BootstrapTextBoxFor(m => m.CurrentWindowsUser, isReadOnly: true)
                             @Html.HiddenFor(m => m.CurrentWindowsUser)
 
-                            @Html.BootstrapTextBoxFor(m => m.SqlUsername, labelTooltip: VASJ.BI.Resources.Strings.MustHaveValidSqlLogin)
+                            @Html.BootstrapTextBoxFor(m => m.SqlUsername, labelTooltip: BI.Resources.Strings.MustHaveValidSqlLogin)
 
                             @Html.BootstrapPasswordFor(m => m.SqlPassword)
 
-                            <button type="submit" class="btn btn-lg btn-success btn-block">@Html.Raw(VASJ.BI.Resources.Strings.Submit)</button>
+                            <button type="submit" class="btn btn-lg btn-success btn-block">@Html.Raw(BI.Resources.Strings.Submit)</button>
                         }
                     }
                 }
                 else
                 {
                     <div class="alert alert-success">
-                        <p><i class="fa fa-check"></i> @VASJ.BI.Resources.Strings.InstallationSuccess</p>
+                        <p><i class="fa fa-check"></i> @BI.Resources.Strings.InstallationSuccess</p>
                     </div>
                     <div class="alert alert-warning">
-                        <p><i class="fa fa-warning"></i> @VASJ.BI.Resources.Strings.InstallationFollowUp</p>
+                        <p><i class="fa fa-warning"></i> @BI.Resources.Strings.InstallationFollowUp</p>
                         <ul>
-                            <li>@VASJ.BI.Resources.Strings.Username: administrator</li>
-                            <li>@VASJ.BI.Resources.Strings.Password: 12345678</li>
+                            <li>@BI.Resources.Strings.Username: administrator</li>
+                            <li>@BI.Resources.Strings.Password: 12345678</li>
                         </ul>
                     </div>
-                    <a href="~/Admin" class="btn btn-lg btn-success btn-block">@VASJ.BI.Resources.Strings.Continue</a>
+                    <a href="~/Admin" class="btn btn-lg btn-success btn-block">@BI.Resources.Strings.Continue</a>
                 }
             </div>
         </div>

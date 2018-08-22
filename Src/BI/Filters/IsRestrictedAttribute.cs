@@ -1,68 +1,68 @@
-﻿using System;
+using BI.Models;
+using System;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
-using VASJ.BI.Models;
 
-namespace VASJ.BI.Filters
+namespace BI.Filters
 {
-    /// <summary>
-    /// Must be applied always before any other action filters
-    /// </summary>
-    [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = false, Inherited = true)]
-    public sealed class IsRestrictedAttribute : ActionFilterAttribute
+  /// <summary>
+  /// Must be applied always before any other action filters
+  /// </summary>
+  [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = false, Inherited = true)]
+  public sealed class IsRestrictedAttribute : ActionFilterAttribute
+  {
+    public override void OnActionExecuting(ActionExecutingContext filterContext)
     {
-        public override void OnActionExecuting(ActionExecutingContext filterContext)
-        {
-            string controller = filterContext.ActionDescriptor.ControllerDescriptor.ControllerName.ToLower();
-            string action = filterContext.ActionDescriptor.ActionName;
+      string controller = filterContext.ActionDescriptor.ControllerDescriptor.ControllerName.ToLower();
+      string action = filterContext.ActionDescriptor.ActionName;
 
-            if (BackEndSessions.CurrentUser.IsNull())
-            {
-                if (!(controller == "admin" && action.ToLower() == "login"))
-                    filterContext.Result = new RedirectToRouteResult(new RouteValueDictionary(new { action = "Login", controller = "Admin", ReturnUrl = HttpUtility.UrlEncode(filterContext.HttpContext.Request.Url.AbsoluteUri) }));
-            }
-            else
-            {
-                AdminPages backEndPages = new AdminPages();
-                AdminPage backEndPage = backEndPages.GetPageByAction(action);
-                if (backEndPage.IsNotNull())
-                {
-                    if (backEndPages.IsPermissionGranted(backEndPage.PageId, PermissionCode.Browse))
+      if (BackEndSessions.CurrentUser.IsNull())
+      {
+        if (!(controller == "admin" && action.ToLower() == "login"))
+          filterContext.Result = new RedirectToRouteResult(new RouteValueDictionary(new { action = "Login", controller = "Admin", ReturnUrl = HttpUtility.UrlEncode(filterContext.HttpContext.Request.Url.AbsoluteUri) }));
+      }
+      else
+      {
+        AdminPages backEndPages = new AdminPages();
+        AdminPage backEndPage = backEndPages.GetPageByAction(action);
+        if (backEndPage.IsNotNull())
+        {
+          if (backEndPages.IsPermissionGranted(backEndPage.PageId, PermissionCode.Browse))
+          {
+            if (controller == "admin" && action.ToLower() == "login")
+              filterContext.Result = new RedirectToRouteResult(new RouteValueDictionary(new { action = "Index", controller = "Admin" }));
+          }
+          else
+          {
+            filterContext.Result = new RedirectToRouteResult(
+                new RouteValueDictionary(
+                    new
                     {
-                        if (controller == "admin" && action.ToLower() == "login")
-                            filterContext.Result = new RedirectToRouteResult(new RouteValueDictionary(new { action = "Index", controller = "Admin" }));
+                      action = "ErrorPage",
+                      controller = "Admin",
+                      errorPage = action,
+                      errorMessage = Resources.Strings.PageAccessNotAuthorized
                     }
-                    else
-                    {
-                        filterContext.Result = new RedirectToRouteResult(
-                            new RouteValueDictionary(
-                                new
-                                {
-                                    action = "ErrorPage",
-                                    controller = "Admin",
-                                    errorPage = action,
-                                    errorMessage = Resources.Strings.PageAccessNotAuthorized
-                                }
-                            )
-                        );
-                    }
-                }
-                else
-                {
-                    filterContext.Result = new RedirectToRouteResult(
-                        new RouteValueDictionary(
-                            new
-                            {
-                                action = "ErrorPage",
-                                controller = "Admin",
-                                errorPage = action,
-                                errorMessage = Resources.Strings.Error404
-                            }
-                        )
-                    );
-                }
-            }
+                )
+            );
+          }
         }
+        else
+        {
+          filterContext.Result = new RedirectToRouteResult(
+              new RouteValueDictionary(
+                  new
+                  {
+                    action = "ErrorPage",
+                    controller = "Admin",
+                    errorPage = action,
+                    errorMessage = Resources.Strings.Error404
+                  }
+              )
+          );
+        }
+      }
     }
+  }
 }

@@ -1,14 +1,14 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Web.Mvc;
 
-namespace VASJ.BI.ModuleConnectors
+namespace BI.ModuleConnectors
 {
-    public interface IModuleConnector
-    {
-        List<SelectListItem> GetSelectItemList();
+  public interface IModuleConnector
+  {
+    List<SelectListItem> GetSelectItemList();
 
-        //string GetContent(HtmlHelper htmlHelper, FrontEndCmsPage model, string id);
+    //string GetContent(HtmlHelper htmlHelper, FrontEndCmsPage model, string id);
 
-        bool IsFileUsed(string filePath);
-    }
+    bool IsFileUsed(string filePath);
+  }
 }

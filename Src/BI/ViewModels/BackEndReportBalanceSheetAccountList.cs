@@ -1,10 +1,10 @@
+using BI.Helpers;
+using BI.Models;
+using BI.Models.POCO;
 using System;
 using System.Collections.Generic;
-using VASJ.BI.Helpers;
-using VASJ.BI.Models;
-using VASJ.BI.Models.POCO;
 
-namespace VASJ.BI.ViewModels
+namespace BI.ViewModels
 {
   public class BackEndReportBalanceSheetAccountList
   {

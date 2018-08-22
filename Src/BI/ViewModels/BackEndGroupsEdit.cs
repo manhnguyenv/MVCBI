@@ -1,12 +1,12 @@
-﻿using VASJ.BI.Helpers;
+using BI.Helpers;
 
-namespace VASJ.BI.ViewModels
+namespace BI.ViewModels
 {
-    public class BackEndGroupsEdit
-    {
-        [DataAnnotationsDisplay("GroupName")]
-        [DataAnnotationsRequired]
-        [DataAnnotationsStringLengthMax(255)]
-        public string GroupName { get; set; }
-    }
+  public class BackEndGroupsEdit
+  {
+    [DataAnnotationsDisplay("GroupName")]
+    [DataAnnotationsRequired]
+    [DataAnnotationsStringLengthMax(255)]
+    public string GroupName { get; set; }
+  }
 }

@@ -1,4 +1,4 @@
-﻿@model BackEndAdminPagesEdit
+@model BackEndAdminPagesEdit
 <div class="row">
     <div class="col-lg-12">
         @using (Html.BootstrapBeginForm())
@@ -12,7 +12,7 @@
                             @Html.BootstrapResetForm()
                         </text>
                     }
-                    @Html.BootstrapButtonRedirect("/Admin/AdminPages", VASJ.BI.Resources.Strings.AdminPages)
+                    @Html.BootstrapButtonRedirect("/Admin/AdminPages", BI.Resources.Strings.AdminPages)
                 </div>
                 <div class="panel-body">
 
@@ -26,11 +26,11 @@
                                 AdminPages adminPages = new AdminPages();
                                 var selectListBackEndAdminPages = new SelectList(adminPages.GetAllPages(true), "PageId", "PageName", Model.PageParentId);
                             }
-                            @Html.BootstrapDropDownListFor(m => m.PageParentId, selectListBackEndAdminPages, VASJ.BI.Resources.Strings.NoParent)
+                            @Html.BootstrapDropDownListFor(m => m.PageParentId, selectListBackEndAdminPages, BI.Resources.Strings.NoParent)
 
-                            @Html.BootstrapTextBoxFor(m => m.PageName, labelTooltip: VASJ.BI.Resources.Strings.TooltipAdminPageName)
+                            @Html.BootstrapTextBoxFor(m => m.PageName, labelTooltip: BI.Resources.Strings.TooltipAdminPageName)
 
-                            @Html.BootstrapTextBoxFor(m => m.Url, labelTooltip: VASJ.BI.Resources.Strings.TooltipAbsoluteOrRelativeURL)
+                            @Html.BootstrapTextBoxFor(m => m.Url, labelTooltip: BI.Resources.Strings.TooltipAbsoluteOrRelativeURL)
 
                             @Html.BootstrapDropDownListFor(m => m.Target, FormHelper.GetSelectListForTarget(FormHelper.SelectedValueForTarget.SameWindow))
 

@@ -1,7 +1,7 @@
-﻿@model BackEndGlobalConfigurationEdit
+@model BackEndGlobalConfigurationEdit
 <div class="row">
     <div class="col-xs-12">
-        <p class="bg-warning"><i class="fa fa-info-circle"></i> @Html.Raw(VASJ.BI.Resources.Strings.NoteToClearCacheToTakeEffect)</p>
+        <p class="bg-warning"><i class="fa fa-info-circle"></i> @Html.Raw(BI.Resources.Strings.NoteToClearCacheToTakeEffect)</p>
     </div>
 </div>
 <div class="row">
@@ -20,13 +20,13 @@
 
                     <ul class="nav nav-tabs">
                         <li class="active">
-                            <a href="#general" data-toggle="tab">@Html.Raw(VASJ.BI.Resources.Strings.General)</a>
+                            <a href="#general" data-toggle="tab">@Html.Raw(BI.Resources.Strings.General)</a>
                         </li>
                         <li>
-                            <a href="#status" data-toggle="tab">@Html.Raw(VASJ.BI.Resources.Strings.Status)</a>
+                            <a href="#status" data-toggle="tab">@Html.Raw(BI.Resources.Strings.Status)</a>
                         </li>
                         <li>
-                            <a href="#seo-and-tracking" data-toggle="tab">@Html.Raw(VASJ.BI.Resources.Strings.SeoAndTracking)</a>
+                            <a href="#seo-and-tracking" data-toggle="tab">@Html.Raw(BI.Resources.Strings.SeoAndTracking)</a>
                         </li>
                     </ul>
 
@@ -37,7 +37,7 @@
 
                             @Html.BootstrapTextBoxFor(m => m.NotificationEmail)
 
-                            @Html.BootstrapCheckBoxFor(m => m.IsCanonicalizeActive, labelTooltip: VASJ.BI.Resources.Strings.TooltipCanonicalize)
+                            @Html.BootstrapCheckBoxFor(m => m.IsCanonicalizeActive, labelTooltip: BI.Resources.Strings.TooltipCanonicalize)
 
                             <div class="form-group">
                                 @Html.LabelFor(m => m.DomainName)
@@ -85,7 +85,7 @@
                             @Html.BootstrapTextBoxFor(m => m.OfflineCode)
 
                             <div class="form-group">
-                                <label>@VASJ.BI.Resources.Strings.OfflineUrl</label>
+                                <label>@BI.Resources.Strings.OfflineUrl</label>
                                 <p class="form-control-static">
                                     <a href="~/?OfflineCode=@Model.OfflineCode" target="_blank">@Request.Url.Scheme://@Request.Url.Authority/?OfflineCode=@Model.OfflineCode</a>
                                 </p>
@@ -99,17 +99,17 @@
                             @Html.BootstrapTextAreaFor(m => m.MetaDescription, rows: 3)
 
                             @Html.BootstrapDropDownListFor(m => m.Robots, FormHelper.GetSelectListForMetaRobots())
-                            
+
                             @Html.BootstrapTextBoxFor(m => m.BingVerificationCode)
 
                             @Html.BootstrapTextBoxFor(m => m.GoogleVerificationCode)
 
                             @Html.BootstrapTextBoxFor(m => m.GoogleSearchCode)
 
-                            @Html.BootstrapTextAreaFor(m => m.GoogleAnalyticsTrackingCode, rows: 3, labelTooltip: VASJ.BI.Resources.Strings.TooltipGoogleAnalyticsTrackingCode)
+                            @Html.BootstrapTextAreaFor(m => m.GoogleAnalyticsTrackingCode, rows: 3, labelTooltip: BI.Resources.Strings.TooltipGoogleAnalyticsTrackingCode)
 
                             <div class="form-group">
-                                <label title="Submit this URL to Google Web Master Tools" data-toggle="tooltip">@VASJ.BI.Resources.Strings.GoogleMultilingualSitemap</label>
+                                <label title="Submit this URL to Google Web Master Tools" data-toggle="tooltip">@BI.Resources.Strings.GoogleMultilingualSitemap</label>
                                 <p class="form-control-static">
                                     <a href="~/sitemap.xml" target="_blank">@Request.Url.Scheme://@Request.Url.Authority/sitemap.xml</a>
                                 </p>

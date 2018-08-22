@@ -1,9 +1,9 @@
+using BI.Helpers;
+using BI.Models;
 using System;
 using System.Globalization;
-using VASJ.BI.Helpers;
-using VASJ.BI.Models;
 
-namespace VASJ.BI
+namespace BI
 {
   public class DataHelper
   {

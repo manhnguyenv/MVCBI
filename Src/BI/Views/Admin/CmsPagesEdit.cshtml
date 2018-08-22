@@ -1,4 +1,4 @@
-﻿@model BackEndCmsPagesEdit
+@model BackEndCmsPagesEdit
 <div class="row">
     <div class="col-lg-12">
         @using (Html.BootstrapBeginForm())
@@ -12,7 +12,7 @@
                             @Html.BootstrapResetForm()
                         </text>
                     }
-                    @Html.BootstrapButtonRedirect("/Admin/CmsPages", VASJ.BI.Resources.Strings.CmsPages)
+                    @Html.BootstrapButtonRedirect("/Admin/CmsPages", BI.Resources.Strings.CmsPages)
                 </div>
                 <div class="panel-body">
 
@@ -26,7 +26,7 @@
                                 CmsPages CmsPages = new CmsPages();
                                 var selectListBackEndCmsPages = new SelectList(CmsPages.GetAllPages(true), "PageId", "PageName", Model.PageParentId);
                             }
-                            @Html.BootstrapDropDownListFor(m => m.PageParentId, selectListBackEndCmsPages, VASJ.BI.Resources.Strings.NoParent)
+                            @Html.BootstrapDropDownListFor(m => m.PageParentId, selectListBackEndCmsPages, BI.Resources.Strings.NoParent)
 
                             @Html.BootstrapTextBoxFor(m => m.PageName)
 
@@ -61,7 +61,7 @@
 
                             @Html.BootstrapCheckBoxFor(m => m.IsHomePage)
                         </div>
-                    }   
+                    }
                 </div>
             </div>
         }

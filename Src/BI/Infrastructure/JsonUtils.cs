@@ -1,41 +1,41 @@
-﻿using Newtonsoft.Json;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 
-namespace VASJ.BI.Infrastructure
+namespace BI.Infrastructure
 {
-    public class JsonUtils
+  public class JsonUtils
+  {
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="obj"></param>
+    /// <returns></returns>
+    public static string SerializeObject(object obj)
     {
-        /// <summary>
-        ///
-        /// </summary>
-        /// <param name="obj"></param>
-        /// <returns></returns>
-        public static string SerializeObject(object obj)
-        {
-            if (obj == null) return string.Empty;
+      if (obj == null) return string.Empty;
 
-            DefaultContractResolver contractResolver = new DefaultContractResolver
-            {
-                NamingStrategy = new CamelCaseNamingStrategy()
-            };
+      DefaultContractResolver contractResolver = new DefaultContractResolver
+      {
+        NamingStrategy = new CamelCaseNamingStrategy()
+      };
 
-            return JsonConvert.SerializeObject(obj, new JsonSerializerSettings
-            {
-                ContractResolver = contractResolver,
-                Formatting = Formatting.None
-            });
-        }
-
-        /// <summary>
-        ///
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="stringify"></param>
-        /// <returns></returns>
-        public static T DeserializeObject<T>(string stringify) where T : class
-        {
-            var result = JsonConvert.DeserializeObject<T>(stringify);
-            return result;
-        }
+      return JsonConvert.SerializeObject(obj, new JsonSerializerSettings
+      {
+        ContractResolver = contractResolver,
+        Formatting = Formatting.None
+      });
     }
+
+    /// <summary>
+    ///
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <param name="stringify"></param>
+    /// <returns></returns>
+    public static T DeserializeObject<T>(string stringify) where T : class
+    {
+      var result = JsonConvert.DeserializeObject<T>(stringify);
+      return result;
+    }
+  }
 }

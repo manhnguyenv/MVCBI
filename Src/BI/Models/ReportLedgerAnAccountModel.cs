@@ -1,10 +1,10 @@
+using BI.Helpers;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
-using VASJ.BI.Helpers;
 
-namespace VASJ.BI.Models
+namespace BI.Models
 {
   public class ReportLedgerAnAccountModel
   {

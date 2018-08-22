@@ -1,8 +1,8 @@
 using AutoMapper;
-using VASJ.BI.Models;
-using VASJ.BI.Models.DTO;
+using BI.Models;
+using BI.Models.DTO;
 
-namespace VASJ.BI
+namespace BI
 {
   public class AutoMapperConfiguration
   {
