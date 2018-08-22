@@ -1,0 +1,28 @@
+﻿@model BackEndSysVarAddEdit
+<div class="row">
+    <div class="col-lg-12">
+        @using (Html.BootstrapBeginForm())
+        {
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    @Html.BootstrapSubmit()
+                    @Html.BootstrapResetForm()
+                    @Html.BootstrapButtonRedirect("/Admin/SysVars", "Quản Lý Biến Hệ Thống")
+                </div>
+                <div class="panel-body">
+                    @Html.AntiForgeryToken()
+                    @Html.BootstrapValidationSummary()
+                    @Html.HiddenFor(m => m.Sys_Id)
+                    @Html.HiddenFor(m => m.Sys_Type)
+                    @Html.HiddenFor(m => m.Sys_Var)
+                    <div class="col-lg-6">
+                        @Html.BootstrapTextBoxFor(m => m.Sys_Name, isReadOnly: true)
+                    </div>
+                    <div class="col-lg-6">
+                        @Html.BootstrapTextBoxFor(m => m.Sys_Value, autoFocus: true)
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

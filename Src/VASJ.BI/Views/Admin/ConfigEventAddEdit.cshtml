@@ -1,0 +1,41 @@
+﻿@model BackEndConfigEventAddEdit
+<div class="row">
+    <div class="col-lg-12">
+        @using (Html.BootstrapBeginForm())
+        {
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    @Html.BootstrapSubmit()
+                    @Html.BootstrapResetForm()
+                    @Html.BootstrapButtonRedirect("/Admin/ConfigEvents", "Event Config")
+                </div>
+                <div class="panel-body">
+
+                    @Html.AntiForgeryToken()
+                    @Html.BootstrapValidationSummary()
+
+                    <div class="col-lg-12">
+                        @Html.BootstrapTextBoxFor(m => m.EventName, autoFocus: true)
+                    </div>
+                    <div class="col-lg-6">
+                        @Html.BootstrapDateTimePickerFor(m => m.StartDate)
+                    </div>
+                    <div class="col-lg-6">
+                        @Html.BootstrapDateTimePickerFor(m => m.EndDate)
+                    </div>
+                    <div class="col-lg-6">
+                        @{
+                            List<SelectListItem> listStatus = new List<SelectListItem>
+                            {
+                                new SelectListItem {Value = "1", Text = "Active"},
+                                new SelectListItem {Value = "0", Text = "InActive"}
+                            };
+                            var selectList = new SelectList(listStatus, "Value", "Text");
+                        }
+                        @Html.BootstrapDropDownListFor(m => m.Status, selectList, null)
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

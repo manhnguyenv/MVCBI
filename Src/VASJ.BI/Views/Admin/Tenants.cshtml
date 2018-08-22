@@ -1,0 +1,41 @@
+@model BackEndTenantList
+<div class="row">
+  <div class="col-lg-12">
+    @using (Html.BootstrapBeginForm(formMethod: FormMethod.Get, isDirtyFormMonitored: false))
+    {
+      <div class="panel panel-default">
+        <div class="panel-body">
+        </div>
+        <div class="panel-footer">
+          @Html.BootstrapButtonAdd("/Admin/TenantAddEdit")
+        </div>
+      </div>
+    }
+  </div>
+</div>
+<div class="row">
+  <div class="col-lg-12">
+    <div class="table-responsive">
+      @if (Model.Tenants.IgnoreNulls().Any())
+      {
+        using (Html.BootstrapBeginForm("", "", isDirtyFormMonitored: false))
+        {
+          @Html.AntiForgeryToken()
+
+          WebGridHelper webGrid = new WebGridHelper(Model.Tenants, defaultSort: "Id", sortDirection: SortDirection.Ascending, rowsPerPage: 20);
+          @webGrid.GetExtendedHtml(
+                   columns: webGrid.ExtendedColumns(
+                            webGrid.ExtendedColumn("", "", @<text>@Html.BootstrapButtonEdit("/Admin/TenantAddEdit/" + item.Id as string)</text>, style: "col-10"),
+                                  webGrid.ExtendedColumn("Name", "Tên"),
+                                  webGrid.ExtendedColumn("MST", "MST"),
+                                  webGrid.ExtendedColumn("Dvcs", "Dvcs"),
+                                  webGrid.ExtendedColumn("Representative", "Đại diện pháp luật"),
+                                  webGrid.ExtendedColumn("Address", "Address"),
+                                  webGrid.ExtendedColumn("DateIssue", "Ngày đăng ký", @<text>@(item.DateIssue == null ? "" : item.DateIssue.ToString("dd-MM-yyyy"))</text>),
+                                       webGrid.ExtendedColumn("DateActive", "Ngày hoạt động", @<text>@(item.DateActive == null ? "" : item.DateActive.ToString("dd-MM-yyyy"))</text>)
+                                         ));
+        }
+      }
+    </div>
+  </div>
+</div>

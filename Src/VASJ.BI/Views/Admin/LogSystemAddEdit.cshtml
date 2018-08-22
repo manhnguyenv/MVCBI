@@ -1,0 +1,70 @@
+﻿@using System.Linq;
+
+@model BackEndLogSystemAddEdit
+<div class="row">
+    <div class="col-lg-12">
+        @using (Html.BootstrapBeginForm())
+        {
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    @Html.BootstrapSubmit()
+                    @Html.BootstrapResetForm()
+                    @Html.BootstrapButtonRedirect("/Admin/LogSystems", "Quản Lý Log Hệ Thống")
+                </div>
+                <div class="panel-body">
+
+                    @Html.AntiForgeryToken()
+                    @Html.BootstrapValidationSummary()
+
+                    @Html.HiddenFor(m => m.id)
+
+                    <div class="col-lg-12">
+                        @Html.BootstrapTextAreaFor(m => m.description)
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="col-lg-6">
+                        @{
+                            List<SelectListItem> listTypes = new List<SelectListItem>
+                                            {
+                                                new SelectListItem {Value = "1", Text = "Tạo mới"},
+                                                new SelectListItem {Value = "2", Text = "Cập nhật"},
+                                                new SelectListItem {Value = "3", Text = "Xóa"}
+                                            };
+                            var selectListTypes = new SelectList(listTypes, "Value", "Text");
+                        }
+                        @Html.BootstrapDropDownListFor(m => m.type, selectListTypes, null)
+                    </div>
+
+                    <div class="col-lg-6">
+                        @{
+                            var logSystems = new LogSystems();
+                            var y = (from x in logSystems.GetAllUserIds() select new SelectListItem { Value = x.user_id.Value.ToString(), Text = x.user_id.Value.ToString() }).ToList();
+                            var selectListUsers = new SelectList(y, "Value", "Text");
+                        }
+                        @Html.BootstrapDropDownListFor(m => m.user_id, selectListUsers, null)
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="col-lg-6">
+                        @{
+                            var systemLogs = new LogSystems();
+                            var q = (from p in systemLogs.GetAllUserNames() select new SelectListItem { Value = p.username, Text = p.username }).ToList();
+                            var selectListAccounts = new SelectList(q, "Value", "Text");
+                        }
+                        @Html.BootstrapDropDownListFor(m => m.username, selectListAccounts, null)
+                    </div>
+
+                    <div class="col-lg-6">
+                        @Html.BootstrapDateTimePickerFor(m => m.created_at)
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="col-lg-6">
+                        @Html.BootstrapDateTimePickerFor(m => m.updated_at)
+                    </div>
+                    <div class="col-lg-6">
+                        @Html.BootstrapDateTimePickerFor(m => m.deleted_at)
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

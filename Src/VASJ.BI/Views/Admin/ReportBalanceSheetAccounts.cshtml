@@ -1,0 +1,251 @@
+@using System.Linq
+@model BackEndReportBalanceSheetAccountList
+@{
+        /**/
+
+        /**/
+
+        int totalItems = (from x in Model.ReportBalanceSheetAccounts
+                          select x).Count();
+}
+<style>
+
+  thead > tr > th {
+    text-align: center;
+  }
+
+  /* Column widths are based on these cells */
+
+  .col-1 {
+    width: 3%;
+    text-align: center;
+  }
+
+  .col-01 {
+    width: 3.9% !important;
+    text-align: center;
+  }
+
+  .col-2 {
+    width: 10%;
+  }
+
+  .col-3 {
+    width: 10%;
+  }
+
+  .col-4 {
+    width: 10%;
+  }
+
+  .col-5 {
+    width: 10%;
+  }
+
+  .col-6 {
+    width: 10%;
+  }
+
+  .col-7 {
+    width: 10%;
+  }
+
+  .col-8 {
+    width: 10%;
+  }
+
+  .col-9 {
+    width: auto;
+  }
+
+  .col-10 {
+    width: 0px !important;
+  }
+</style>
+<div class="row">
+  <div class="col-lg-12">
+    @using (Html.BootstrapBeginForm(formMethod: FormMethod.Get, isDirtyFormMonitored: false))
+    {
+      <div class="panel panel-default">
+        <div class="panel-body">
+          @Html.BootstrapValidationSummary()
+          <div class="col-sm-12">
+            @{
+              var blankList_DmDvcs = new List<DmDvcs>();
+              if (Model != null && Model.DmDvcss != null)
+              {
+                var selectListItems_DmDvcs = new SelectList(Model.DmDvcss, "Ma_Dvcs", "Ten_Dvcs_UTF8", Model.MaDonVi);
+                @Html.BootstrapDropDownListFor(m => m.MaDonVi, selectListItems_DmDvcs)
+              }
+              else
+              {
+                var selectListItems_DmDvcs = new SelectList(blankList_DmDvcs, "Ma_Dvcs", "Ten_Dvcs_UTF8", Model.MaDonVi);
+                @Html.BootstrapDropDownListFor(m => m.MaDonVi, selectListItems_DmDvcs)
+              }
+            }
+          </div>
+          <div class="clearfix"></div>
+          <div class="col-sm-6">
+            @Html.BootstrapDatePickerFor(m => m.StartDate)
+          </div>
+          <div class="col-sm-6">
+            @Html.BootstrapDatePickerFor(m => m.EndDate)
+          </div>
+        </div>
+        <div class="panel-footer">
+          @Html.BootstrapApplyFilter()
+          @Html.BootstrapResetFilter()
+        </div>
+      </div>
+    }
+  </div>
+</div>
+<div class="row">
+  <div class="col-lg-12">
+    <div class="table-responsive">
+      @if (Model.ReportBalanceSheetAccounts.IgnoreNulls().Any())
+      {
+        using (Html.BootstrapBeginForm("", "", isDirtyFormMonitored: false))
+        {
+          @Html.AntiForgeryToken()
+
+          WebGridHelper webGrid = new WebGridHelper(Model.ReportBalanceSheetAccounts, defaultSort: "Ngay_ct", sortDirection: SortDirection.Ascending, rowsPerPage: 20);
+          @webGrid.GetExtendedHtml(
+                   columns: webGrid.ExtendedColumns(
+                   webGrid.ExtendedColumn("Stt", "STT", null, style: "col-1"),
+                   webGrid.ExtendedColumn("Tk", "Tài khoản", null, style: "col-2"),
+                   webGrid.ExtendedColumn("No_dk_fm", "Nợ đầu kỳ", null, style: "col-3 currency-vnd"),
+                   webGrid.ExtendedColumn("Co_dk_fm", "Có đầu kỳ", null, style: "col-4 currency-vnd"),
+                   webGrid.ExtendedColumn("Ps_no_fm", "Ps nợ", null, style: "col-5 currency-vnd"),
+                   webGrid.ExtendedColumn("Ps_co_fm", "Ps có", null, style: "col-6 currency-vnd"),
+                   webGrid.ExtendedColumn("No_ck_fm", "Nợ cuối kỳ", null, style: "col-7 currency-vnd"),
+                   webGrid.ExtendedColumn("Co_ck_fm", "Có cuối kỳ", null, style: "col-8 currency-vnd"),
+                   webGrid.ExtendedColumn("Ten_tk_UTF8", "Tên tài khoản", null, style: "col-9"),
+                   webGrid.ExtendedColumn("Level1MakeBold", "Level1", null, style: "col-10")
+          ));
+          <table id="table-summary" class="table table-striped table-bordered table-hover footable toggle-square footable-loaded">
+            <tbody>
+              <tr>
+                <td class="col-01">&nbsp;</td>
+                <td class="col-2">&nbsp;</td>
+                <td class="col-3 currency-vnd">&nbsp;</td>
+                <td class="col-4 currency-vnd" style="font-weight:bold;">
+                  @{
+                    decimal tongNo_dk = (from x in Model.ReportBalanceSheetAccounts
+                                         where x.No_dk != null
+                                         select x.No_dk.Value).Sum();
+                    string tongNoDk = DataHelper.FormatDecimal(tongNo_dk);
+                    <text>@tongNoDk</text>
+                  }
+                </td>
+                <td class="col-5 currency-vnd" style="font-weight:bold;">
+                  @{
+                    decimal tongCo_dk = (from x in Model.ReportBalanceSheetAccounts
+                                         where x.Co_dk != null
+                                         select x.Co_dk.Value).Sum();
+                    string tongCoDk = DataHelper.FormatDecimal(tongCo_dk);
+                    <text>@tongCoDk</text>
+                  }
+                </td>
+                <td class="col-6 currency-vnd" style="font-weight:bold;">
+                  @{
+                    decimal tongPs_no = (from x in Model.ReportBalanceSheetAccounts
+                                         where x.Ps_no != null
+                                         select x.Ps_no.Value).Sum();
+                    string tongPsNo = DataHelper.FormatDecimal(tongPs_no);
+                    <text>@tongPsNo</text>
+                  }
+                </td>
+                <td class="col-7 currency-vnd" style="font-weight:bold;">
+                  @{
+                    decimal tongPs_co = (from x in Model.ReportBalanceSheetAccounts
+                                         where x.Ps_co != null
+                                         select x.Ps_co.Value).Sum();
+                    string tongPsCo = DataHelper.FormatDecimal(tongPs_co);
+                    <text>@tongPsCo</text>
+                  }
+                </td>
+                <td class="col-8 currency-vnd" style="font-weight:bold;">
+                  @{
+                    decimal tongNo_ck = (from x in Model.ReportBalanceSheetAccounts
+                                         where x.No_ck != null
+                                         select x.No_ck.Value).Sum();
+                    string tongNoCk = DataHelper.FormatDecimal(tongNo_ck);
+                    <text>@tongNoCk</text>
+                  }
+                </td>
+                <td class="col-9 currency-vnd" style="font-weight:bold;" colspan="2">
+                  @{
+                    decimal tongCo_ck = (from x in Model.ReportBalanceSheetAccounts
+                                         where x.Co_ck != null
+                                         select x.Co_ck.Value).Sum();
+                    string tongCoCk = DataHelper.FormatDecimal(tongCo_ck);
+                    <text>@tongCoCk</text>
+                  }
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        }
+      }
+    </div>
+  </div>
+</div>
+<script>
+    var sTotalItems = '@totalItems';
+    var totalItems = parseInt(sTotalItems);
+    $(document).ready(function () {
+
+        //Get page index from URL
+        var arrPaging = window.location.href.trim().split('page=');
+        var arrPagingLength = arrPaging.length;
+        var pagingIndex = 1;
+        if (arrPagingLength > 1) {
+            pagingIndex = arrPaging[arrPagingLength - 1];
+        }
+
+        //Get page index from Table
+        var arrPager = $('.pager-pagination').text().replace( />/g, "").replace(/</g, "").trim().split(' ');
+        var arrPagerLength = arrPager.length;
+        var pageIndexMaximum = arrPager[arrPagerLength - 1];
+
+        if (pageIndexMaximum === pagingIndex) {
+          //$('#table-summary').show();  //Chỉ hiển thị kết quả ở trang cuối
+        } else {
+          //$('#table-summary').hide(); //Không hiển thị kết quả ở trang khác
+        }
+
+        //Get rowsPerPage
+        var rowsPerPage = (totalItems - (totalItems % pageIndexMaximum)) / (pageIndexMaximum - 1);
+
+        //Select WebGrid table
+        var table = $('form > table')[0];
+        var tr = $(table).find('tbody > tr');
+        var i = (pagingIndex - 1) * 20;
+        $(tr).find('td:first').each(function () {
+            i = i + 1;
+            $(this).text(i);
+      });
+
+      //Bold the second column with condition in 10th column
+      var table = $('form > table')[0];
+      var tr = $(table).find('tbody > tr');
+      $(tr).find('td:nth-child(10)').each(function () {
+        var parent = $(this).parent();
+        var isBold = $.trim($(this).text()) === "True";
+        if (parent.length > 0 && isBold) {
+          var bold = $(parent).find('td');
+          $(bold).css("font-weight", "bold");﻿
+        }
+      });
+
+      //Remove 10th column of THead & TBody
+      var myTableBody = $('form > table > tbody')[0];
+      $(myTableBody).find("tr td:nth-last-child(-n+1)").remove();
+      $(myTableBody).find("tr th:nth-last-child(-n+1)").remove();
+
+      var myTableHeader = $('form > table > thead')[0];
+      $(myTableHeader).find("tr td:nth-last-child(-n+1)").remove();
+      $(myTableHeader).find("tr th:nth-last-child(-n+1)").remove();
+    });
+</script>

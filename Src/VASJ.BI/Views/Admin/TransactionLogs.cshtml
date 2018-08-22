@@ -1,0 +1,61 @@
+﻿@model BackEndTransactionLogList
+<div class="row">
+    <div class="col-lg-12">
+        @using (Html.BootstrapBeginForm(formMethod: FormMethod.Get, isDirtyFormMonitored: false))
+        {
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    @Html.BootstrapValidationSummary()
+                    <div class="col-sm-6">
+                        @Html.BootstrapTextBoxFor(m => m.TransationDate)
+                    </div>
+                    <div class="col-sm-6">
+                        @Html.BootstrapTextBoxFor(m => m.Reason)
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="col-sm-6">
+                        @Html.BootstrapTextBoxFor(m => m.UserId)
+                    </div>
+                    <div class="col-sm-6">
+                        @Html.BootstrapTextBoxFor(m => m.Nick)
+                    </div>
+                </div>
+                <div class="panel-footer">
+                    @Html.BootstrapApplyFilter()
+                    @Html.BootstrapResetFilter()
+                    @Html.BootstrapButtonAdd("/Admin/TransactionLogAddEdit")
+                </div>
+            </div>
+        }
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="table-responsive">
+            @if (Model.TransactionLogs.IgnoreNulls().Any())
+            {
+                using (Html.BootstrapBeginForm("", "", isDirtyFormMonitored: false))
+                {
+                    @Html.AntiForgeryToken()
+
+                    WebGridHelper webGrid = new WebGridHelper(Model.TransactionLogs, defaultSort: "Id", sortDirection: SortDirection.Ascending, rowsPerPage: 10);
+                    @webGrid.GetExtendedHtml(
+                            columns: webGrid.ExtendedColumns(
+                                webGrid.ExtendedColumn("ID_Fighting", "Mã kèo"),
+                                webGrid.ExtendedColumn("TransationDate", "Thời gian thực hiện", @<text>@(item.TransationDate == null ? "" : item.TransationDate.ToString("dd-MM-yyyy HH:mm"))</text>),
+                                webGrid.ExtendedColumn("ReceiveAccount", "Tài khoản nhận"),
+                                webGrid.ExtendedColumn("TransationTypeDesc", "Giao dịch"),
+                                webGrid.ExtendedColumn("AmountFm", "GOLD"),
+                                webGrid.ExtendedColumn("UserId", "UserId"),
+                                webGrid.ExtendedColumn("Nick", "Nick"),
+                                webGrid.ExtendedColumn("Reason", "Reason"),
+                                webGrid.ExtendedColumn("ErrorMessage", "ErrorMessage"),
+                                webGrid.ExtendedColumn("Created_At", "Thời gian bắt đầu", @<text>@(item.Created_At == null ? "" : item.Created_At.ToString("dd-MM-yyyy HH:mm"))</text>),
+                                webGrid.ExtendedColumn("Updated_At", "Thời gian kết thúc", @<text>@(item.Updated_At == null ? "" : item.Updated_At.ToString("dd-MM-yyyy HH:mm"))</text>),
+                                webGrid.ExtendedColumn("Status", "Trạng thái", @<text><span class="badge @(item.Status ? "badge-primary" : "badge-danger")">@(item.Status ? "Success" : "Error")</span></text>)
+                            ));
+                }
+            }
+        </div>
+    </div>
+</div>

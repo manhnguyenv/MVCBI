@@ -1,0 +1,91 @@
+@model BackEndTenantAddEdit
+<div class="row">
+  <div class="col-lg-12">
+    @using (Html.BootstrapBeginForm())
+    {
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          @Html.BootstrapSubmit()
+          @Html.BootstrapResetForm()
+          @Html.BootstrapButtonRedirect("/Admin/Tenants", "Tenants")
+        </div>
+        <div class="panel-body">
+          @Html.AntiForgeryToken()
+          @Html.BootstrapValidationSummary()
+          @Html.HiddenFor(m => m.Id)
+          @Html.HiddenFor(m => m.UserName)
+          <div class="col-lg-12">
+            @Html.BootstrapTextBoxFor(m => m.Name, autoFocus: true)
+          </div>
+          <div class="clearfix"></div>
+          <div class="col-lg-12">
+            @Html.BootstrapTextBoxFor(m => m.NameEn)
+          </div>
+          <div class="clearfix"></div>
+          <div class="col-lg-12">
+            @Html.BootstrapTextBoxFor(m => m.MST)
+          </div>
+          <div class="clearfix"></div>
+          <div class="col-lg-4">
+            @Html.BootstrapTextBoxFor(m => m.Representative)
+          </div>
+          <div class="col-lg-8">
+            @{
+              var blankList_DmDvcs = new List<DmDvcs>();
+              if (Model != null && Model.DmDvcss != null)
+              {
+                var selectListItems_DmDvcs = new SelectList(Model.DmDvcss, "Ma_Dvcs", "Ten_Dvcs_UTF8", Model.Dvcs);
+                @Html.BootstrapDropDownListFor(m => m.Dvcs, selectListItems_DmDvcs)
+              }
+              else
+              {
+                var selectListItems_DmDvcs = new SelectList(blankList_DmDvcs, "Ma_Dvcs", "Ten_Dvcs_UTF8", Model.Dvcs);
+                @Html.BootstrapDropDownListFor(m => m.Dvcs, selectListItems_DmDvcs)
+              }
+            }
+          </div>
+          <div class="clearfix"></div>
+          <div class="col-lg-4">
+            @Html.BootstrapTextBoxFor(m => m.Phone)
+          </div>
+          <div class="col-lg-8">
+            @Html.BootstrapTextBoxFor(m => m.Email)
+          </div>
+          <div class="clearfix"></div>
+          <div class="col-lg-12">
+            @Html.BootstrapTextBoxFor(m => m.Address)
+          </div>
+          <div class="clearfix"></div>
+          <div class="col-lg-12">
+            @Html.BootstrapTextBoxFor(m => m.Domain)
+          </div>
+          <div class="clearfix"></div>
+          <div class="col-lg-6">
+            @Html.BootstrapDatePickerFor(m => m.DateIssue)
+          </div>
+          <div class="col-lg-6">
+            @Html.BootstrapDatePickerFor(m => m.DateActive)
+          </div>
+          <div class="clearfix"></div>
+          @if (Model.ShowHideDbName)
+          {
+            <div class="col-lg-6">
+              @Html.BootstrapTextBoxFor(m => m.ServerName)
+            </div>
+            <div class="col-lg-6">
+              @Html.BootstrapTextBoxFor(m => m.DbName)
+            </div>
+            <div class="clearfix"></div>
+            <div class="col-lg-6">
+              @Html.BootstrapTextBoxFor(m => m.DbUserName)
+            </div>
+            <div class="col-lg-6">
+              @Html.BootstrapTextBoxFor(m => m.DbPassword)
+            </div>
+            <div class="clearfix"></div>
+          }
+        </div>
+      </div>
+    }
+  </div>
+</div>

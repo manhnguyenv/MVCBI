@@ -1,0 +1,84 @@
+﻿@model BackEndLogin
+@{
+  Layout = null;
+}
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <title>Đăng nhập - Business Intelligence - Phần Mềm Kế Toán Doanh Nghiệp Việt Nam</title>
+  <meta name="description" content="Phần mềm kế toán doanh nghiệp Việt Nam">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="manifest" href="site.webmanifest">
+  <link rel="apple-touch-icon" href="icon.png">
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="~/Content/frontend/css/login.css">
+  <link rel="stylesheet" href="~/Content/shared/css/font-awesome.css">
+  <link rel="stylesheet" href="~/Content/bootstrap.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+</head>
+<body>
+  <div class="content clearfix">
+    <div class="bg-addmin">
+      <div class="form-addmin">
+        <div class="logo">
+          <div class="img-logo"><img src="~/Content/frontend/img/logo.png" alt="Logo"></div>
+          <div class="txt-logo "><span>Business Intelligence</span></div>
+        </div>
+        <div class="text-login"><span>Đăng nhập</span></div>
+        <div class="form-login">
+          <form action="/Admin/Login" method="post">
+            @Html.AntiForgeryToken()
+            @if (!Html.ViewData.ModelState.IsValidOrRefresh())
+            {
+              @Html.BootstrapValidationSummary()
+            }
+            <div class="login-admin">
+              <div class="form-group">
+                <label for="user">Tên đăng nhập</label>
+                <span class="glyphicon glyphicon-user form-control-feedback"></span>
+                <input type="text" placeholder="Tên đăng nhập" class="form-control" name="Username" id="Username">
+              </div>
+            </div>
+            <div class="login-admin">
+              <div class="form-group">
+                <label for="pass">Mật khẩu</label>
+                <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+                <input type="password" placeholder="Mật khẩu" class="form-control" name="Password" id="Password">
+                @Html.HiddenFor(m => m.ReturnUrl)
+              </div>
+            </div>
+            <div class="txt-forgot text-center">
+              <a href="#"><span>Quên mật khẩu?</span></a>
+            </div>
+            <div class="btn-login text-center"><button type="submit" class="btn btn-primary">Đăng nhập</button></div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="~/Scripts/jquery-1.11.3.min.js"></script>
+  <script src="~/Scripts/bootstrap.min.js"></script>
+  <script>
+    $(function () {
+      var body = $('body');
+      var backgroundImages = [
+        'url("/Content/frontend/img/bg1.jpg")',
+        'url("/Content/frontend/img/bg2.png")'];
+      var current = 0;
+
+      function nextBackground() {
+        body.css(
+          'background-image',
+          backgroundImages[current = ++current % backgroundImages.length]);
+
+        setTimeout(nextBackground, 10000); //automatically change background-image every 5 seconds * 2
+      }
+      setTimeout(nextBackground, 10000); //automatically change background-image every 5 seconds * 2
+      body.css('background-image', backgroundImages[0]);
+    });
+  </script>
+</body>
+</html>

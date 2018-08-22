@@ -1,0 +1,41 @@
+﻿@model BackEndLogSystemList
+<div class="row">
+    <div class="col-lg-12">
+        @using (Html.BootstrapBeginForm(formMethod: FormMethod.Get, isDirtyFormMonitored: false))
+        {
+            <div class="panel panel-default">
+                <div class="panel-footer">
+                    @Html.BootstrapApplyFilter()
+                    @Html.BootstrapResetFilter()
+                    @Html.BootstrapButtonAdd("/Admin/LogSystemAddEdit")
+                </div>
+            </div>
+        }
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="table-responsive">
+            @if (Model.LogSystems.IgnoreNulls().Any())
+            {
+                using (Html.BootstrapBeginForm("", "", isDirtyFormMonitored: false))
+                {
+                    @Html.AntiForgeryToken()
+
+                    WebGridHelper webGrid = new WebGridHelper(Model.LogSystems, defaultSort: "Id", sortDirection: SortDirection.Ascending, rowsPerPage: 10);
+                    @webGrid.GetExtendedHtml(
+                             columns: webGrid.ExtendedColumns(
+                                     webGrid.ExtendedColumn("Name", "Tên tài khoản"),
+                                     webGrid.ExtendedColumn("table_name", "Tên bảng"),
+                                     webGrid.ExtendedColumn("record_id", "Mã bản ghi"),
+                                     webGrid.ExtendedColumn("TypeName", "Hành động"),
+                                     webGrid.ExtendedColumn("Description", "Dữ liệu miêu tả"),
+                                     webGrid.ExtendedColumn("created_at", "Thời gian tạo", @<text>@(item.created_at == null ? "" : item.created_at.ToString("dd-MM-yyyy HH:mm"))</text>),
+                                     webGrid.ExtendedColumn("updated_at", "Thời gian cập nhật", @<text>@(item.updated_at == null ? "" : item.updated_at.ToString("dd-MM-yyyy HH:mm"))</text>),
+                                     webGrid.ExtendedColumn("deleted_at", "Thời gian xóa", @<text>@(item.deleted_at == null ? "" : item.deleted_at.ToString("dd-MM-yyyy HH:mm"))</text>)
+                        ));
+                }
+            }
+        </div>
+    </div>
+</div>
